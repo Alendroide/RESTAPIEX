@@ -22,6 +22,10 @@ Estudiante.init({
     fechanacimiento : {
         type : DataTypes.DATEONLY,
         allowNull : true
+    },
+    foto : {
+        type : DataTypes.STRING(255),
+        allowNull : true
     }
 },{
     sequelize,

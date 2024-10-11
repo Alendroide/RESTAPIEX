@@ -1,3 +1,5 @@
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 module.exports = {
     getAll : (Model,include=[],exclude=[]) => async (req,res) => {
         try {
@@ -16,6 +18,16 @@ module.exports = {
                 return res.status(404).json({message:`${Model.name} no encontrado`})
             }
             return res.status(200).json(modelInstance);
+        }
+        catch(error){
+            console.error(error);
+            return res.status(500).json({message:`Error obteniendo ${Model.name}`})
+        }
+    },
+    getByName : (Model,include=[],attr='',exclude=[]) => async (req,res) =>{
+        try {
+            const modelList = await Model.findAll({where:{[attr]:{[Op.like]:`%${req.query[attr]}%`}}})
+            return res.status(200).json(modelList);
         }
         catch(error){
             console.error(error);

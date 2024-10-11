@@ -1,12 +1,12 @@
 const express = require('express');
 const app = express();
-const router = require('./routers/estudiante.router');
 const fs = require('fs');
 const path = require('path');
 
 app.use(express.json());
-
+app.use('/img',express.static(path.join(__dirname,'public')))
 const routes = path.join(__dirname,'routers');
+
 fs.readdirSync(routes).forEach((file)=>{
     const router = require(path.join(routes,file));
     app.use('/api',router);

@@ -4,7 +4,7 @@ const {Model,DataTypes} = require('sequelize');
 class Estudiante extends Model{}
 Estudiante.init({
     identificacion : {
-        type : DataTypes.INTEGER,
+        type : DataTypes.BIGINT,
         primaryKey : true
     },
     nombre : {

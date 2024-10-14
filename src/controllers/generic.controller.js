@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
+require('dotenv').config();
 module.exports = {
     getAll : (Model,include=[],exclude=[]) => async (req,res) => {
         try {
@@ -54,7 +55,7 @@ module.exports = {
                 apellido : data.apellido,
                 ficha : data.ficha,
                 fechanacimiento : data.fechanacimiento,
-                foto : `http://192.168.0.105:3000/img/${req.file.filename}`
+                foto : `http://${process.env.SERVER}:${process.env.PORT}/img/${req.file.filename}`
             })
             return res.status(201).json(newModel)
         }

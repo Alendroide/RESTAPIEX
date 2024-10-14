@@ -43,5 +43,24 @@ module.exports = {
             console.error(error);
             return res.status(400).json({message:`Error creando ${Model.name}`})
         }
+    },
+    
+    upload : (Model) => async (req,res) => {
+        try{
+            const data = req.body
+            const newModel = await Model.create({
+                identificacion : data.identificacion,
+                nombre : data.nombre,
+                apellido : data.apellido,
+                ficha : data.ficha,
+                fechanacimiento : data.fechanacimiento,
+                foto : `http://192.168.0.105:3000/img/${req.file.filename}`
+            })
+            return res.status(201).json(newModel)
+        }
+        catch(error){
+            console.error(error);
+            return res.status(500).json({message:`Error creando ${Model.name}`})
+        }
     }
 }

@@ -6,6 +6,6 @@ const controller = require('../controllers/generic.controller');
 
 router.get('/fichas',controller.getAll(Ficha,[Programa,Estudiante],['programa']));
 router.get('/ficha/:codigo',controller.getById(Ficha,[Programa,Estudiante],'codigo',['programa']));
-router.post('fichas',controller.create(Ficha));
+router.post('/fichas',controller.create(Ficha));
 
 module.exports = router;
